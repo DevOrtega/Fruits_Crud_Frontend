@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FruitService, Fruit } from 'src/app/services/fruits/fruit.service';
 
 @Component({
   selector: 'app-crud',
@@ -7,9 +8,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CrudComponent implements OnInit {
 
-  constructor() { }
+  fruits: any;
+  // errorMessage: string;
 
-  ngOnInit(): void {
+  constructor(private fruitService: FruitService) { }
+
+  async ngOnInit(): Promise<void> {
+    this.fruits = await this.fruitService
+      .getFruits()
+      ;
   }
+
 
 }
