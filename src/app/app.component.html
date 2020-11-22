@@ -3,10 +3,11 @@
     <div class="container">
       <nav class="navbar" role="navigation" aria-label="main navigation">
         <div class="navbar-menu is-active buttons">
-          <button type="button" class="btn btn-primary">Home</button>
-          <button type="button" class="btn btn-secondary">CRUD</button>
+          <button type="button" class="btn btn-primary" [routerLink]="['']">Home</button>
+          <button type="button" class="btn btn-secondary" [routerLink]="['/crud']">CRUD</button>
         </div>
       </nav>
+      <router-outlet></router-outlet>
     </div>
   </section>
 </div>
