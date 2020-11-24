@@ -6,12 +6,16 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './components/home/home.component';
 import { CrudComponent } from './components/crud/crud.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FruitFormComponent } from './components/fruit-form/fruit-form.component';
+import { EditFormComponent } from './components/edit-form/edit-form.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
-    CrudComponent
+    CrudComponent,
+    FruitFormComponent,
+    EditFormComponent
   ],
   imports: [
     BrowserModule,

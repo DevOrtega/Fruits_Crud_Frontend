@@ -1,17 +1,10 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 import axios from 'axios';
-import { Router } from '@angular/router';
-import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
 
 export interface Fruit {
-  id: Number,
   name: String,
   size: String,
-  main_color: String,
-  created_at: Date,
-  updated_at: Date
+  main_color: String
 }
 
 const API_URL: string = 'http://fruits_crud_backend.test/api';
@@ -21,22 +14,52 @@ const API_URL: string = 'http://fruits_crud_backend.test/api';
 })
 export class FruitService {
 
-  constructor(private router: Router, private http: HttpClient) {
-    //this.init();
+  constructor() {
   }
 
   async getFruits() {
     return axios.get(API_URL + '/fruits')
       .then(response => {
-        return response.data;
+        return response.data.data;
       })
       .catch(() => null)
 
   }
-  /*  return this.http.get(API_URL + '/players')
-   .pipe(map(users => {
-     //this.profileSubject.next(users);
 
-     return users;
-   }); */
+  async addFruit(fruit: any) {
+    return axios.post(API_URL + '/fruits', fruit)
+      .then(response => {
+        return response.data;
+      })
+      .catch(() => null)
+  }
+
+  deleteFruit(id: Number) {
+    return axios.delete(API_URL + '/fruits/' + id)
+      .then(response => {
+        return response.data;
+      })
+      .catch(() => null)
+  }
+
+  editFruit(id: Number, fruit) {
+
+    return axios.patch(API_URL + '/fruits/' + id, fruit)
+      .then(response => {
+        return response.data;
+      })
+      .catch(() => null)
+  }
+
+  async getFruitById(id) {
+
+    if (id != null) {
+      return axios.get(API_URL + '/fruits/' + id)
+        .then(response => {
+
+          return response.data.data;
+        });
+    }
+  }
+
 }
