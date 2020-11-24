@@ -1,1 +1,43 @@
-<p>crud works!</p>
+<div>
+  <span class="help is-info" *ngIf="isLoading">Loading...</span>
+
+  <table class="table" *ngIf="!isLoading">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Size</th>
+        <th>Main Color</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let fruit of fruits">
+        <td>{{ fruit.id }}</td>
+        <td>{{ fruit.name }}</td>
+        <td>{{ fruit.size }}</td>
+        <td>{{ fruit.main_color ? fruit.main_color : "" }}</td>
+        <td>
+          <button
+            type="button"
+            class="btn btn-warning mr-2"
+            *ngIf="!editing"
+            (click)="showEditForm(fruit.id)"
+          >
+            Edit
+          </button>
+          <button class="btn btn-danger" (click)="deleteFruit(fruit.id)">
+            Delete
+          </button>
+        </td>
+      </tr>
+      <tr *ngIf="editing">
+        <app-edit-form
+          [edit]="editForm"
+          (saveEmitter)="editFruit($event)"
+        ></app-edit-form>
+      </tr>
+    </tbody>
+  </table>
+  <app-fruit-form (fruitAdded)="appendFruit($event)"></app-fruit-form>
+</div>

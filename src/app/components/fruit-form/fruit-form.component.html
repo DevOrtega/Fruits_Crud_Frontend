@@ -1,0 +1,69 @@
+<!-- <span class="help is-danger">{{ errors }}</span> -->
+<div class="card mx-auto text-center">
+  <div class="card-body">
+    <form  [formGroup]="fruitForm" (ngSubmit)="onSubmit()">
+      <div class="form-row">
+        <div class="form-group col">
+          <label>Name</label>
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <span class="input-group-text">
+                <i class="fas fa-apple-alt"></i>
+              </span>
+            </div>
+            <input
+              type="text"
+              formControlName="name"
+              class="form-control"
+              placeholder="Name"
+              [ngClass]="{ 'is-invalid': submitted && form.name.errors }"
+            />
+            <div *ngIf="submitted && form.name.errors" class="invalid-feedback">
+              <div *ngIf="form.name.errors.required">Name is required</div>
+            </div>
+          </div>
+        </div>
+        <div class="form-group col">
+          <label>Size</label>
+          <select
+            class="custom-select custom-select-md mb-3"
+            [ngClass]="{ 'is-invalid': submitted && form.size.errors }"
+            (change)="onChangeSize($event.target.value)"
+          >
+            <option selected disabled>Sizes</option>
+            <option *ngFor="let size of sizes">{{ size }}</option>
+          </select>
+          <div *ngIf="submitted && form.size.errors" class="invalid-feedback">
+            <div *ngIf="form.size.errors.required">You must pick one</div>
+          </div>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group col">
+          <label>Main Color</label>
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <span class="input-group-text">
+                <i class="fas fa-palette"></i>
+              </span>
+            </div>
+            <input
+              type="text"
+              formControlName="main_color"
+              class="form-control"
+              placeholder="Main Color"
+            />
+          </div>
+        </div>
+      </div>
+      <div class="text-center">
+        <button class="btn btn-success mr-1" [class.is-loading]="isLoading">
+          Add Fruit
+        </button>
+        <button class="btn btn-secondary" type="reset" (click)="onReset()">
+          Clear
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
