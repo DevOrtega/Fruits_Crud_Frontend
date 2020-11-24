@@ -8,6 +8,7 @@ import { CrudComponent } from './components/crud/crud.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FruitFormComponent } from './components/fruit-form/fruit-form.component';
 import { EditFormComponent } from './components/edit-form/edit-form.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { EditFormComponent } from './components/edit-form/edit-form.component';
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    BrowserAnimationsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

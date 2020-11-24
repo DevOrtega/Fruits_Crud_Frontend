@@ -1,13 +1,12 @@
 import { Injectable } from '@angular/core';
 import axios from 'axios';
+import { environment } from 'src/environments/environment';
 
 export interface Fruit {
   name: String,
   size: String,
   main_color: String
 }
-
-const API_URL: string = 'http://fruits_crud_backend.test/api';
 
 @Injectable({
   providedIn: 'root'
@@ -18,7 +17,12 @@ export class FruitService {
   }
 
   async getFruits() {
-    return axios.get(API_URL + '/fruits')
+    return axios.get(environment.API_URL + '/fruits', {
+      headers: {
+        'Accept' : 'application/json',
+        'Authorization' : `Bearer ${environment.token}` ,
+      }
+    })
       .then(response => {
         return response.data.data;
       })
@@ -27,7 +31,12 @@ export class FruitService {
   }
 
   async addFruit(fruit: any) {
-    return axios.post(API_URL + '/fruits', fruit)
+    return axios.post(environment.API_URL + '/fruits', fruit, {
+      headers: {
+        'Accept' : 'application/json',
+        'Authorization' : `Bearer ${environment.token}` ,
+      }
+    })
       .then(response => {
         return response.data;
       })
@@ -35,7 +44,12 @@ export class FruitService {
   }
 
   deleteFruit(id: Number) {
-    return axios.delete(API_URL + '/fruits/' + id)
+    return axios.delete(environment.API_URL + '/fruits/' + id, {
+      headers: {
+        'Accept' : 'application/json',
+        'Authorization' : `Bearer ${environment.token}` ,
+      }
+    })
       .then(response => {
         return response.data;
       })
@@ -44,7 +58,12 @@ export class FruitService {
 
   editFruit(id: Number, fruit) {
 
-    return axios.patch(API_URL + '/fruits/' + id, fruit)
+    return axios.patch(environment.API_URL + '/fruits/' + id, fruit, {
+      headers: {
+        'Accept' : 'application/json',
+        'Authorization' : `Bearer ${environment.token}` ,
+      }
+    })
       .then(response => {
         return response.data;
       })
@@ -54,7 +73,12 @@ export class FruitService {
   async getFruitById(id) {
 
     if (id != null) {
-      return axios.get(API_URL + '/fruits/' + id)
+      return axios.get(environment.API_URL + '/fruits/' + id, {
+        headers: {
+          'Accept' : 'application/json',
+          'Authorization' : `Bearer ${environment.token}` ,
+        }
+      })
         .then(response => {
 
           return response.data.data;

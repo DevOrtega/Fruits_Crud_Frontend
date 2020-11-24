@@ -11,6 +11,7 @@ export class EditFormComponent implements OnInit {
 
   @Input() edit: FruitForm;
   @Output() saveEmitter = new EventEmitter();
+  @Output() cancelEmitter = new EventEmitter();
 
   public newFruit: FormGroup;
   public sizes: string[] = ['small', 'medium', 'big'];
@@ -55,6 +56,10 @@ export class EditFormComponent implements OnInit {
   onReset() {
     this.submitted = false;
     this.newFruit.reset();
+  }
+
+  cancelEdit(){
+    this.cancelEmitter.emit("Cancel");
   }
 
 }

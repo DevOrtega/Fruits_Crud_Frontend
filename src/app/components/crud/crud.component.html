@@ -1,14 +1,14 @@
 <div>
   <span class="help is-info" *ngIf="isLoading">Loading...</span>
 
-  <table class="table" *ngIf="!isLoading">
+  <table  id="dtBasicExample" class="table table-striped table-bordered table-sm" *ngIf="!isLoading">
     <thead>
       <tr>
-        <th>ID</th>
-        <th>Name</th>
-        <th>Size</th>
-        <th>Main Color</th>
-        <th>Actions</th>
+        <th class="th-sm">ID</th>
+        <th class="th-sm">Name</th>
+        <th class="th-sm">Size</th>
+        <th class="th-sm">Main Color</th>
+        <th class="th-sm">Actions</th>
       </tr>
     </thead>
     <tbody>
@@ -31,13 +31,14 @@
           </button>
         </td>
       </tr>
-      <tr *ngIf="editing">
-        <app-edit-form
-          [edit]="editForm"
-          (saveEmitter)="editFruit($event)"
-        ></app-edit-form>
-      </tr>
     </tbody>
   </table>
-  <app-fruit-form (fruitAdded)="appendFruit($event)"></app-fruit-form>
+  <app-edit-form
+    *ngIf="editing"
+    [edit]="editForm"
+    (saveEmitter)="editFruit($event)"
+    (cancelEmitter)="closeEdit($event)"
+  ></app-edit-form>
+  <app-fruit-form *ngIf="!editing" (fruitAdded)="appendFruit($event)"></app-fruit-form>
 </div>
+

@@ -1,7 +1,8 @@
 <!-- <span class="help is-danger">{{ errors }}</span> -->
-<div class="card mx-auto text-center">
+<div class="card w-75 h-auto mx-auto text-center mt-4">
   <div class="card-body">
-    <form  [formGroup]="fruitForm" (ngSubmit)="onSubmit()">
+    <h5>Add Fruit Form</h5>
+    <form [formGroup]="fruitForm" (ngSubmit)="onSubmit()">
       <div class="form-row">
         <div class="form-group col">
           <label>Name</label>
@@ -55,14 +56,24 @@
             />
           </div>
         </div>
-      </div>
-      <div class="text-center">
-        <button class="btn btn-success mr-1" [class.is-loading]="isLoading">
-          Add Fruit
-        </button>
-        <button class="btn btn-secondary" type="reset" (click)="onReset()">
-          Clear
-        </button>
+        <div class="form-group col text-center">
+          <label>Actions</label>
+          <div>
+            <button
+              class="btn-sm btn-success mr-1"
+              [class.is-loading]="isLoading"
+            >
+              Add Fruit
+            </button>
+            <button
+              class="btn-sm btn-secondary"
+              type="reset"
+              (click)="onReset()"
+            >
+              Clear
+            </button>
+          </div>
+        </div>
       </div>
     </form>
   </div>

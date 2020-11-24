@@ -85,9 +85,13 @@ export class CrudComponent implements OnInit {
       let foundIndex = this.fruits.findIndex(x => x.id == this.fruit_id);
       // get the attribute of the fruit to edit and convert to string
       let size = JSON.stringify(event.size);
+      let name = JSON.stringify(event.name);
+      let main_color = JSON.stringify(event.main_color);
       //regular expression to removes quotes from stringify
       const regex = /"/g;
       this.fruits[foundIndex].size = size.replace(regex, '');
+      this.fruits[foundIndex].name = name.replace(regex, '');
+      this.fruits[foundIndex].main_color = main_color.replace(regex, '');
 
     });
 
@@ -97,6 +101,10 @@ export class CrudComponent implements OnInit {
     this.editing = !this.editing;
     this.fruit_id = id;
     this.getFruit(this.fruit_id);
+  }
+
+  async closeEdit(event: any) {
+    this.editing = !this.editing;
   }
 
 
